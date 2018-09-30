@@ -15,9 +15,13 @@ public class Cat extends SequentialFilter{
 	File file;
 	
 	// Constructor
-	public Cat(String fileName) {
+	public Cat(String fileName) throws MissingArgumentException {
 		file = new File(fileName);
 		
+		if (fileName == null) {
+			throw new MissingArgumentException();
+		}
+
 		try {
 			this.input = new Scanner(file);
 		} catch (FileNotFoundException e) {
