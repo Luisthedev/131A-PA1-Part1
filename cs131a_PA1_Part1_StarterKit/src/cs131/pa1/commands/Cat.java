@@ -12,12 +12,24 @@ public class Cat extends SequentialFilter{
 	
 	//Fields
 	Scanner input;
-	// Constructor
+	File file;
 	
-	String fileName;
-	public Cat(String fileName)  {
-		if (fileName == null) {
-			//Missing argument message
+	// Constructor
+	public Cat(String fileName) {
+		file = new File(fileName);
+		
+		try {
+			this.input = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void process() {
+		while (input.hasNextLine()) {
+			System.out.println(input.nextLine());
 		}
 		
 	}
@@ -27,14 +39,5 @@ public class Cat extends SequentialFilter{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	public String toString() {
-		return "cat" +fileName;
-		
-	}
-	
-	
-	
-	
 
 }

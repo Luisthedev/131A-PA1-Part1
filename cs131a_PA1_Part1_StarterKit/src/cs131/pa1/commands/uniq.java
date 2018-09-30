@@ -1,15 +1,15 @@
 package cs131.pa1.commands;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import cs131.pa1.filter.sequential.SequentialFilter;
 
 public class uniq extends SequentialFilter {
 
 	// Fields
-	ArrayList<String> seenStorage; 
+	LinkedList<String> seenStorage; 
 	public uniq() {
-		this.seenStorage = new ArrayList<String>();
+		this.seenStorage = new LinkedList<String>();
 	}
 
 	@Override
@@ -20,4 +20,5 @@ public class uniq extends SequentialFilter {
 		}
 		return null;
 	}
+
 }

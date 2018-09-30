@@ -9,25 +9,22 @@ public class Grep extends SequentialFilter {
 	
 	// Constructor
 	public Grep(String searchWord) {
-     	if (searchWord.contains(" ")) {
-			// Missing Argument Error
-		} else if (searchWord == null) {
-			// Missing Argument Error
-		} else {
-			this.searchWord = searchWord;
+		if (searchWord == null) {
+			// throw invalid argument 
 		}
+		
+		if (searchWord.equals(" ")) {
+			// throw missing argument
+		}
+		this.searchWord = searchWord;
 	}
 	
 	@Override
 	protected String processLine(String line) {
-		if (line.contains(searchWord)) {
+		if (line.contains(this.searchWord)) {
 			return line;
-		} else return null;
-	}
-	
-	public String toString() {
-		return searchWord;
-		
+		}
+		return null;
 	}
 
 }
