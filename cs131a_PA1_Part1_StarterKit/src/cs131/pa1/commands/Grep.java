@@ -8,13 +8,9 @@ public class Grep extends SequentialFilter {
 	String searchWord;
 	
 	// Constructor
-	public Grep(String searchWord) {
-		if (searchWord == null) {
-			// throw invalid argument 
-		}
-		
-		if (searchWord.equals(" ")) {
-			// throw missing argument
+	public Grep(String searchWord) throws MissingArgumentException {
+		if (searchWord.equals(" ") || searchWord == null) {
+			throw new MissingArgumentException();
 		}
 		this.searchWord = searchWord;
 	}
