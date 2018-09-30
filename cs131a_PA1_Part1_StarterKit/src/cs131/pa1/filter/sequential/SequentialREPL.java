@@ -66,6 +66,8 @@ public class SequentialREPL {
 
 	private static void execute(List<SequentialFilter> commandList) {
 		
+		System.out.println(commandList.toString());
+		
 		for(int i = 0; i < commandList.size();i++) {
 			commandList.get(i).process();
 		}

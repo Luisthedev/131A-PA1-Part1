@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cs131.pa1.commands.Cat;
+import cs131.pa1.commands.ChangeDirectory;
+import cs131.pa1.commands.FilePrinter;
 import cs131.pa1.commands.Grep;
 import cs131.pa1.commands.ListDirectory;
 import cs131.pa1.commands.MissingArgumentException;
+import cs131.pa1.commands.OutPrinter;
 import cs131.pa1.commands.PWD;
 import cs131.pa1.commands.Wc;
 import cs131.pa1.commands.uniq;
@@ -44,7 +47,7 @@ public class SequentialCommandBuilder {
  		
  		 
  		
-		return null;
+		return commandList;
 	}
 	
 	
@@ -86,7 +89,7 @@ public class SequentialCommandBuilder {
 		
 		if(commandIn.equals("cd")) {
 			try {
- 				return new Cd(param);
+ 				return new ChangeDirectory(param);
  			} catch (IOException e) {
  				return new OutPrinter(Message.DIRECTORY_NOT_FOUND.with_parameter(subCommand));
  			} catch (MissingArgumentException e) {
@@ -106,19 +109,20 @@ public class SequentialCommandBuilder {
 			return new uniq();
 			
 		}else if(commandIn.equals("grep")) {
+			
 			try {
  				return new Grep(param);
  			} catch (MissingArgumentException e) {
- 				return new OutPrinter(Message.MISSING_ARGUMENT.with_parameter(subCommand));
+ 				return new OutPrinter(Message.REQUIRES_INPUT.with_parameter(subCommand));
  			}
 			
 		}else if(commandIn.equals("cat")  ) {
 			try {
  				return new Cat(param);
- 			} catch (FileNotFoundException e) {
- 				return new OutPrinter(Message.FILE_NOT_FOUND.with_parameter(subCommand));
+ 			//}// catch (FileNotFoundException e) {
+ 			//	return new OutPrinter(Message.FILE_NOT_FOUND.with_parameter(subCommand));
  			} catch (MissingArgumentException e) {
- 				return new OutPrinter(Message.MISSING_ARGUMENT.with_parameter(subCommand));
+ 				return new OutPrinter(Message.REQUIRES_INPUT.with_parameter(subCommand));
  			}
 			
 			
